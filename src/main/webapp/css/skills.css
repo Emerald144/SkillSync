@@ -1,0 +1,684 @@
+/* ==========================================================================
+   SkillSync Design System & Variables
+   ========================================================================== */
+:root {
+  /* Radius Tokens */
+  --radius: 1.25rem;
+  --radius-sm: calc(var(--radius) - 8px);   /* 0.75rem */
+  --radius-md: calc(var(--radius) - 4px);   /* 1.00rem */
+  --radius-lg: var(--radius);               /* 1.25rem */
+  --radius-xl: calc(var(--radius) + 4px);   /* 1.50rem */
+  --radius-2xl: calc(var(--radius) + 8px);  /* 1.75rem */
+  --radius-3xl: calc(var(--radius) + 12px); /* 2.00rem */
+
+  /* Native OKLCH Colors */
+  --background: oklch(0.982 0.004 247.9);
+  --foreground: oklch(0.21 0.035 264);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.035 264);
+
+  --primary: oklch(0.623 0.188 259.8);
+  --primary-foreground: oklch(0.99 0.005 250);
+
+  --secondary: oklch(0.968 0.008 247.9);
+  --secondary-foreground: oklch(0.3 0.035 264);
+
+  --muted: oklch(0.968 0.008 247.9);
+  --muted-foreground: oklch(0.55 0.032 257.4);
+
+  --accent: oklch(0.715 0.126 215.2);
+  --accent-foreground: oklch(0.99 0.005 250);
+
+  --sidebar-accent: oklch(0.95 0.01 250);
+
+  --destructive: oklch(0.601 0.219 27.3);
+  --destructive-foreground: oklch(0.99 0.005 250);
+
+  --success: oklch(0.696 0.149 162.5);
+  --success-foreground: oklch(0.99 0.005 250);
+
+  --border: oklch(0.925 0.012 255.5);
+  --input: oklch(0.925 0.012 255.5);
+  --ring: oklch(0.623 0.188 259.8);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(120deg, oklch(0.623 0.188 259.8), oklch(0.715 0.126 215.2) 52%, oklch(0.696 0.149 162.5));
+  --gradient-soft: linear-gradient(135deg, oklch(0.95 0.02 220), oklch(0.98 0.005 250));
+
+  /* Elevation Shadows */
+  --shadow-soft: 0 1px 2px oklch(0.55 0.05 250 / 0.06), 0 8px 24px -8px oklch(0.55 0.05 250 / 0.12);
+  --shadow-lift: 0 2px 4px oklch(0.55 0.05 250 / 0.06), 0 20px 48px -16px oklch(0.55 0.05 250 / 0.22);
+  --shadow-glow: 0 4px 12px oklch(0.623 0.188 259.8 / 0.3);
+
+  /* Font */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Dark Mode Overrides */
+.dark {
+  --background: oklch(0.18 0.03 264);
+  --foreground: oklch(0.97 0.005 248);
+  --card: oklch(0.23 0.032 264);
+  --card-foreground: oklch(0.97 0.005 248);
+  --secondary: oklch(0.28 0.035 262);
+  --secondary-foreground: oklch(0.97 0.005 248);
+  --sidebar-accent: oklch(0.28 0.035 262);
+  --muted: oklch(0.28 0.035 262);
+  --muted-foreground: oklch(0.72 0.03 257);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+}
+
+/* Global Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Application Layout & Sidebar
+   ========================================================================== */
+.app-shell,
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevents flex content from overflowing */
+}
+
+.sidebar {
+  width: 260px;
+  background-color: var(--card);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-sub {
+  font-size: 0.625rem;
+  color: var(--muted-foreground);
+}
+
+.sidebar-nav {
+  margin-top: 1.75rem;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: var(--sidebar-accent);
+  transform: translateX(2px);
+}
+
+.nav-item.active {
+  background: var(--gradient-brand);
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-badge {
+  margin-left: auto;
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  background-color: rgba(99, 102, 241, 0.12);
+  color: #4f46e5;
+}
+
+.nav-item.active .nav-badge {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+.nav-section-title {
+  padding: 0.75rem 0.75rem 0.35rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
+}
+
+.sidebar-wallet-card {
+  margin-top: 1rem;
+  border-radius: 1rem;
+  background: var(--gradient-soft);
+  padding: 1rem;
+  border: 1px solid var(--border);
+}
+
+.wallet-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0284c7;
+}
+
+.wallet-balance-val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.wallet-sub {
+  font-size: 0.6875rem;
+  color: var(--muted-foreground);
+  margin-top: 0.25rem;
+}
+
+.btn-wallet {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Main Page Layout
+   ========================================================================== */
+.skills-container {
+  flex: 1;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  margin: 0 0 0.25rem 0;
+}
+
+.page-subtitle {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin: 0;
+  max-width: 48rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Tab Navigation & Search Header
+   ========================================================================== */
+.controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tabs-list {
+  display: inline-flex;
+  background-color: var(--secondary);
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+}
+
+.tab-btn {
+  padding: 0.5rem 1rem;
+  border-radius: calc(var(--radius-sm) - 2px);
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--secondary-foreground);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab-btn.active {
+  background-color: var(--card);
+  color: var(--foreground);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  height: 2.5rem;
+  padding-left: 2.25rem;
+  padding-right: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  color: var(--foreground);
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--ring);
+}
+
+/* Tab Panels */
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* ==========================================================================
+   Skill Cards & Skill List
+   ========================================================================== */
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skill-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+.skill-icon-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-sm);
+  background-color: oklch(0.623 0.188 259.8 / 0.1);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.skill-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.skill-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.skill-category {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  margin-top: 0.125rem;
+}
+
+/* Level Badges */
+.level-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.level-beginner {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.level-intermediate {
+  background-color: oklch(0.715 0.126 215.2 / 0.12);
+  color: var(--accent);
+}
+
+.level-advanced {
+  background-color: oklch(0.623 0.188 259.8 / 0.12);
+  color: var(--primary);
+}
+
+.level-expert {
+  background-color: oklch(0.696 0.149 162.5 / 0.12);
+  color: var(--success);
+}
+
+.btn-delete-skill {
+  background: transparent;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: calc(var(--radius-sm) - 4px);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-delete-skill:hover {
+  color: var(--destructive);
+  background-color: oklch(0.601 0.219 27.3 / 0.1);
+}
+
+/* Empty State Card */
+.empty-state-card {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-xl);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 2rem;
+  color: var(--muted-foreground);
+  opacity: 0.6;
+}
+
+.empty-title {
+  margin: 0.75rem 0 0 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.empty-subtitle {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* ==========================================================================
+   Sidebar Cards & Form Controls
+   ========================================================================== */
+.skills-sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 1.5rem;
+}
+
+.surface-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-header {
+  margin-bottom: 1.25rem;
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--card-foreground);
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  margin: 0.25rem 0 0 0;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.form-input, 
+.form-select {
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--input);
+  background-color: var(--card);
+  font-size: 0.875rem;
+  color: var(--foreground);
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus, 
+.form-select:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.btn-primary {
+  height: 2.5rem;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+}
+
+.gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+.bg-success {
+  background-color: var(--success);
+}
+
+/* ==========================================================================
+   Skill Balance Section
+   ========================================================================== */
+.balance-metrics-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.metric-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.metric-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.icon-primary {
+  color: var(--primary);
+}
+
+.metric-count {
+  font-weight: 700;
+}
+
+.progress-bar-track {
+  height: 0.5rem;
+  width: 100%;
+  background-color: var(--secondary);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.balance-footnote {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  margin: 0.5rem 0 0 0;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Utility Animations & Helpers
+   ========================================================================== */
+.lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}

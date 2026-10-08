@@ -1,0 +1,601 @@
+/* ==========================================================================
+   SkillSync Design Tokens (Extracted from Tailwind Theme)
+   ========================================================================== */
+:root {
+  /* Radii */
+  --radius: 1.25rem;
+  --radius-sm: calc(var(--radius) - 8px);  /* 0.75rem */
+  --radius-md: calc(var(--radius) - 4px);  /* 1rem */
+  --radius-lg: var(--radius);              /* 1.25rem */
+  --radius-xl: calc(var(--radius) + 4px);  /* 1.5rem */
+  --radius-2xl: calc(var(--radius) + 8px); /* 1.75rem */
+  --radius-3xl: calc(var(--radius) + 12px);/* 2rem */
+
+  /* Color Palette (OKLCH Native Colors) */
+  --background: oklch(0.982 0.004 247.9);
+  --foreground: oklch(0.21 0.035 264);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.035 264);
+  
+  --primary: oklch(0.623 0.188 259.8);
+  --primary-foreground: oklch(0.99 0.005 250);
+  
+  --brand: oklch(0.623 0.188 259.8);
+  --brand-foreground: oklch(0.99 0.005 250);
+  --brand-2: oklch(0.696 0.149 162.5);
+  
+  --secondary: oklch(0.968 0.008 247.9);
+  --secondary-foreground: oklch(0.3 0.035 264);
+  
+  --muted: oklch(0.968 0.008 247.9);
+  --muted-foreground: oklch(0.55 0.032 257.4);
+  
+  --accent: oklch(0.715 0.126 215.2);
+  --accent-foreground: oklch(0.99 0.005 250);
+  
+  --destructive: oklch(0.601 0.219 27.3);
+  --destructive-foreground: oklch(0.99 0.005 250);
+
+  --border: oklch(0.925 0.012 255.5);
+  --input: oklch(0.925 0.012 255.5);
+  --ring: oklch(0.623 0.188 259.8);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(120deg, oklch(0.623 0.188 259.8), oklch(0.715 0.126 215.2) 52%, oklch(0.696 0.149 162.5));
+  --gradient-soft: linear-gradient(140deg, oklch(0.623 0.188 259.8 / 0.1), oklch(0.696 0.149 162.5 / 0.1));
+
+  /* Shadows */
+  --shadow-soft: 0 1px 2px oklch(0.55 0.05 250 / 0.06), 0 8px 24px -8px oklch(0.55 0.05 250 / 0.12);
+  --shadow-lift: 0 2px 4px oklch(0.55 0.05 250 / 0.06), 0 20px 48px -16px oklch(0.55 0.05 250 / 0.22);
+  --shadow-glow: 0 12px 40px -12px oklch(0.62 0.19 256 / 0.45);
+
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Dark Mode Overrides */
+.dark {
+  --background: oklch(0.18 0.03 264);
+  --foreground: oklch(0.97 0.005 248);
+  --card: oklch(0.23 0.032 264);
+  --card-foreground: oklch(0.97 0.005 248);
+  --secondary: oklch(0.28 0.035 262);
+  --secondary-foreground: oklch(0.97 0.005 248);
+  --muted: oklch(0.28 0.035 262);
+  --muted-foreground: oklch(0.72 0.03 257);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+}
+
+/* Base Body Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Layout Structure
+   ========================================================================== */
+.edit-profile-container {
+  max-width: 56rem; /* max-w-4xl */
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.edit-sections-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ==========================================================================
+   Header Utilities
+   ========================================================================== */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.page-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  margin: 0 0 0.25rem 0;
+}
+
+.page-subtitle {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Card Component (.surface-card equivalent)
+   ========================================================================== */
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--card-foreground);
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin: 0.25rem 0 0 0;
+}
+
+/* ==========================================================================
+   Profile Photo Section
+   ========================================================================== */
+.photo-upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.avatar-camera-container {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+}
+
+.edit-avatar-img, 
+.edit-avatar-initials {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-3xl);
+  object-fit: cover;
+}
+
+.edit-avatar-initials {
+  background: var(--gradient-brand);
+  color: var(--brand-foreground);
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-badge-btn {
+  position: absolute;
+  bottom: -0.25rem;
+  right: -0.25rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-brand);
+  color: var(--brand-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  border: none;
+}
+
+.photo-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+/* ==========================================================================
+   Form Fields & Controls
+   ========================================================================== */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.form-input {
+  height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--input);
+  background: var(--card);
+  font-size: 0.875rem;
+  color: var(--foreground);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-textarea {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--input);
+  background: var(--card);
+  font-size: 0.875rem;
+  color: var(--foreground);
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-textarea:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-brand);
+  color: var(--brand-foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--muted);
+}
+
+.btn-ghost-danger {
+  background: transparent;
+  border: none;
+  color: var(--muted-foreground);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-ghost-danger:hover {
+  color: var(--destructive);
+  background-color: oklch(0.601 0.219 27.3 / 0.1);
+}
+
+/* ==========================================================================
+   Skill Chips & Categories
+   ========================================================================== */
+.skills-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.skill-category-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  background-color: oklch(0.623 0.188 259.8 / 0.1);
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.skill-chip-accent {
+  background-color: oklch(0.696 0.149 162.5 / 0.1);
+  color: var(--brand-2);
+}
+
+.level-badge {
+  font-size: 0.75rem;
+  opacity: 0.75;
+  background-color: oklch(1 0 0 / 0.5);
+  padding: 0.125rem 0.375rem;
+  border-radius: 9999px;
+}
+
+.chip-remove-btn {
+  background: transparent;
+  border: none;
+  color: currentColor;
+  opacity: 0.6;
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: pointer;
+  margin-left: 0.125rem;
+  padding: 0;
+}
+
+.chip-remove-btn:hover {
+  opacity: 1;
+}
+
+.btn-add-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-add-chip:hover {
+  background-color: var(--muted);
+}
+
+/* ==========================================================================
+   Availability Grid
+   ========================================================================== */
+.availability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .availability-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Auxiliary Utilities */
+.mt-4 { margin-top: 1rem; }
+.icon-sm { width: 1rem; height: 1rem; }
+.icon-xs { width: 0.875rem; height: 0.875rem; }
+
+/* ==========================================================================
+   Modal Dialog Styles
+   ========================================================================== */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-backdrop.active {
+  display: flex;
+}
+
+.modal-box {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 26.25rem; /* 420px */
+  box-shadow: var(--shadow-lift);
+}
+
+/* ==========================================================================
+   Availability Section Styles
+   ========================================================================== */
+.availability-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.availability-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--background);
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.availability-item:focus-within {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px oklch(0.623 0.188 259.8 / 0.15);
+}
+
+.availability-item select.form-input,
+.availability-item input[type="time"].form-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--card);
+}
+
+.availability-separator {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  user-select: none;
+}
+
+.btn-remove-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: transparent;
+  color: var(--muted-foreground);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-remove-slot:hover {
+  color: var(--destructive);
+  background-color: oklch(0.601 0.219 27.3 / 0.1);
+}
+
+@media (max-width: 640px) {
+  .availability-item {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .availability-item select.form-input {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+/* ==========================================================================
+   Circular Checkbox Interest Chips (Cross-Browser Fix)
+   ========================================================================== */
+.interests-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  max-height: 16rem;
+  overflow-y: auto;
+  padding: 0.375rem;
+}
+
+/* White Floating Pill Container */
+.interest-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border, #e2e8f0);
+  background-color: var(--card, #ffffff);
+  color: var(--foreground, #1e293b);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease-in-out;
+}
+
+.interest-chip:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Round Checkbox Circle */
+.interest-chip input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 1.5px solid #cbd5e1;
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Active State: Blue Circle + White SVG Checkmark */
+.interest-chip input[type="checkbox"]:checked {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: 0.75rem;
+  background-position: center;
+  background-repeat: no-repeat;
+}
